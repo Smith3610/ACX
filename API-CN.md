@@ -1,4 +1,4 @@
-- [简介](#简介)
+<img width="795" height="655" alt="image" src="https://github.com/user-attachments/assets/b48a79b3-ca4b-45e9-bb5a-a653158a5a78" /><img width="850" height="380" alt="image" src="https://github.com/user-attachments/assets/cd5f6970-57db-4cec-90d3-ecc35734a5b4" />- [简介](#简介)
 - [基本信息](#基本信息)
     - [名词解释](#名词解释)
     - [请求频率限制](#请求频率限制)
@@ -67,7 +67,7 @@
     3. dictionary_biz.pdf（1.1. Idno type）中 code=EUROPEAN_ID 描述调整为身份证
 
 # 简介
-欢迎使用PayouCard开发者文档。概述了商户对接应用开发接口。
+欢迎使用ACX开发者文档。概述了商户对接应用开发接口。
 
 REST API包含两个业务类別：银行卡、全球速汇
 
@@ -83,13 +83,13 @@ merchantId：商户ID。在商户后台系统-”商户基本信息” 菜单中
 ## API服务器地址
 **test环境：**
 
-服务器地址（IP白名单限制）：https://api-merchant-test.logtec.me
+服务器地址（IP白名单限制）：https://mcc-test.logtec.me/
 
 商户后台系统（IP白名单限制）：https://merchant-test.logtec.me
 
 **生产环境：**
 
-服务器地址（IP白名单限制）：https://api-merchant.payoucard.com
+服务器地址（IP白名单限制）：https://www.acx-tech.com/
 
 商户后台系统：https://merchant.payoucard.com
 
@@ -104,7 +104,7 @@ merchantId：商户ID。在商户后台系统-”商户基本信息” 菜单中
 | 参数       | 类型   | 是否必传 | 含义                       |
 |------------|:-------|:---------|----------------------------|
 | requestId  | String | Y        | 请求流水id。20位随机字符    |
-| merchantId | String | Y        | 商户ID。PayouCard为商户分配 |
+| merchantId | String | Y        | 商户ID。AXC为商户分配 |
 | data       | Object | Y        | 业务数据                   |
 | signature  | String | Y        | 签名                       |
 
@@ -125,7 +125,7 @@ merchantId：商户ID。在商户后台系统-”商户基本信息” 菜单中
 | success    | Boolean | Y        | 是否成功。true：成功；false：失败。<br />当code=0时为true |
 | data       | Object  | Y        | 响应体                                          |
 | requestId  | String  | Y        | 请求流水id。20位随机字符                         |
-| merchantId | String  | Y        | 商户ID。PayouCard为商户分配                      |
+| merchantId | String  | Y        | 商户ID。AXC为商户分配                      |
 | signature  | String  | Y        | 签名                                            |
 
 ```JSON
@@ -145,7 +145,7 @@ merchantId：商户ID。在商户后台系统-”商户基本信息” 菜单中
 |------------|:--------|:---------|----------------------------|
 | data       | Object  | Y        | 响应体                     |
 | requestId  | String  | Y        | 请求流水id。20位随机字符    |
-| merchantId | String  | Y        | 商户ID。PayouCard为商户分配 |
+| merchantId | String  | Y        | 商户ID。AXC为商户分配 |
 | signature  | String  | Y        | 签名                       |
 | notifyType | Integer | Y        | 通知类型                   |
 
@@ -163,12 +163,12 @@ merchantId：商户ID。在商户后台系统-”商户基本信息” 菜单中
 
 ## 接口认证及加解密
 ### 创建RSA公私钥
-合作方成为商户后需要登录商户后台系统。在 “商户基本信息” 菜单中生成RSA公钥、私钥，同时PayouCard也会提供PayouCard的公钥。请商户妥善保管公钥、私钥、PayouCard公钥。在之后的API请求中会用到所述参数。
+合作方成为商户后需要登录商户后台系统。在 “商户基本信息” 菜单中生成RSA公钥、私钥，同时AXC也会提供AXC的公钥。请商户妥善保管公钥、私钥、AXC公钥。在之后的API请求中会用到所述参数。
 
 ### 签名
 requestId：请求流水id。20位随机字符
 
-merchantId：PayouCard为商户分配。在商户后台系统 “商户基本信息” 菜单中可查看。
+merchantId：AXC为商户分配。在商户后台系统 “商户基本信息” 菜单中可查看。
 
 data：业务数据。
 
@@ -198,11 +198,11 @@ data={"targetCurrency":"SGD","currency":"EUR","targetCountry":"SG"}&merchantId=8
     * RSA 的最大加密明文长度为117。
     * RSA的最大解密密文长度为128。
     * 请求数据中的字段signature由商户 RSA私钥签名生成。
-    * 响应数据中的字段signature由 PayouCard RSA 私钥签名生成。
-    * 具体实现请参考payoucard-demo.zip```com.payoucard.demo.service.GlobalTransferTestService.class#main()方法```
+    * 响应数据中的字段signature由 AXC RSA 私钥签名生成。
+    * 具体实现请参考AXC-demo.zip```com.AXC.demo.service.GlobalTransferTestService.class#main()方法```
 
 ### 验证签名
-signature：由PayouCard RSA 私钥签名生成
+signature：由AXC RSA 私钥签名生成
 
 * 例如：查询汇率响应数据
 
@@ -222,7 +222,7 @@ signature：由PayouCard RSA 私钥签名生成
 }
 ```
 
-* 使用除签名字段（signature）外的所有非空字段内容组成，按照消息字段的ASCII码排序，并以“&”符号按照“字段名=字段值”的方式连接。通过PayouCard RSA公钥进行验签
+* 使用除签名字段（signature）外的所有非空字段内容组成，按照消息字段的ASCII码排序，并以“&”符号按照“字段名=字段值”的方式连接。通过AXC RSA公钥进行验签
 
 ## 响应码
 
@@ -230,7 +230,7 @@ signature：由PayouCard RSA 私钥签名生成
 |-------|-----------------------------------------------------------------|
 | 0     | 成功                                                            |
 | -1    | 具体业务错误。原因见message描述                                  |
-| 500   | 服务器出错。请联系PayouCard工作人员                              |
+| 500   | 服务器出错。请联系AXC工作人员                              |
 | 50001 | 请求参数缺失。requestId、merchantId、signature为空                 |
 | 50002 | 商户不存在                                                      |
 | 50003 | API功能不可用。例如关闭了全球速汇的功能，则全球速汇相关接口不可用 |
@@ -2048,7 +2048,7 @@ POST /order/merchant/globalTransfer/payment
 
 | 参数     | 类型   | 是否必传 | 含义 |
 |----------|--------|----------|:-----|
-| orderNo | Long | Y | PayouCard订单号 |
+| orderNo | Long | Y | ACX订单号 |
 | originOrderNo | String | Y | 商户原始订单号 |
 | status | String | Y | 支付状态。B1:待处理 |
 
@@ -2086,7 +2086,7 @@ POST /order/merchant/globalTransfer/queryOrderPage
 |----------|--------|----------|:-----|
 | uniqueId | String | Y        | 合作商用户的唯一ID。[1 .. 50 ] 个字符 |
 | originOrderNo | String | N | 商户业务订单号 |
-| orderNo | Long | N | Payoucard订单号 |
+| orderNo | Long | N | ACX订单号 |
 | page | Long | Y | 当前页。默认1 |
 | pageSize | Long | Y | 每页数量。默认10，最大30 |
 
@@ -2119,7 +2119,7 @@ POST /order/merchant/globalTransfer/queryOrderPage
 | records | List | Y        | 数据 |
 | records[0].uniqueId | String | Y        | 合作商用户的唯一ID|
 | records[0].paymentType | String | Y        | 交易类型。2：SEPA；15：速汇 |
-| records[0].orderNo | Long | Y        | Payoucard订单号 |
+| records[0].orderNo | Long | Y        | ACX订单号 |
 | records[0].originOrderNo | String | Y        | 商户订单号 |
 | records[0].status | String | Y | 订单状态。B1：待处理；B2：支付中；B3：支付成功；B4：支付失败；B6：退款；B11：调单_待提交；B12：调单_待审核；B13：调单_审核通过；B15：调单_审核拒绝 |
 | records[0].paymentCurrency | String | Y | 支付币种 |
@@ -2271,7 +2271,7 @@ POST /order/merchant/globalTransfer/submitTransferOrderInfo
 
 | 参数     | 类型   | 是否必传 | 含义                                                           |
 |----------|--------|----------|:-------------------------------------------------------------|
-| orderNo | Long | Y | PayouCard订单号                                                 |
+| orderNo | Long | Y | ACX订单号                                                 |
 | transferInfos | List | N | 订单信息集合                                                       |
 | transferInfos[0].code | String | N | 订单信息code。参见dictionary_biz.pdf（2.2. Transfer order info type） |
 | transferInfos[0].content | String | N | 订单信息内容。不支持中文字符，最多200个字符                                      |
@@ -2342,7 +2342,7 @@ POST /order/merchant/globalTransfer/getOrderResult
 
 | 参数     | 类型   | 是否必传 | 含义 |
 |----------|--------|----------|:-----|
-| orderNo  | Long   | Y        | PayouCard订单号 |
+| orderNo  | Long   | Y        | ACX订单号 |
 
 **请求示例：**
 ```json
@@ -2361,7 +2361,7 @@ POST /order/merchant/globalTransfer/getOrderResult
 
 | 参数     | 类型   | 是否必传 | 含义 |
 |----------|--------|----------|:-----|
-| orderNo  | Long   | Y        | PayouCard订单号 |
+| orderNo  | Long   | Y        | ACX订单号 |
 | status  | String   | Y  | 订单状态。B1：待处理；B2：支付中；B3：支付成功；B4：支付失败；B6：退款；B11：调单_待提交；B12：调单_待审核；B13：调单_审核通过；B15：调单_审核拒绝 |
 | paymentCurrency  | String   | Y        | 支付币种 |
 | paymentAmount  | BigDecimal   | Y        | 支付金额 |
@@ -2443,7 +2443,7 @@ POST /order/merchant/globalTransfer/getOrderResult
 
 | 参数 | 类型 | 是否必传 | 含义 |
 |------|------|------|:------|
-| orderNo | Long    | Y    | PayouCard订单号 |
+| orderNo | Long    | Y    | ACX订单号 |
 | status | String    | Y    | 订单状态。B3：支付成功；B4：支付失败；B6：退款； |
 | paymentCurrency | String    | Y    | 支付币种 |
 | paymentAmount  | BigDecimal   | Y        | 支付金额 |
@@ -2503,7 +2503,7 @@ POST /order/merchant/globalTransfer/getOrderResult
 
 | 参数 | 类型 | 是否必传 | 含义 |
 |------|------|------|:------|
-| orderNo | Long    | Y    | PayouCard订单号 |
+| orderNo | Long    | Y    | ACX订单号 |
 | status | String    | Y    | 订单状态。B11：调单_待提交；B13：调单_审核通过；B15：调单_审核拒绝 |
 | transferOrderInfo | List    | N    | 调单订单信息。参见dictionary_biz.pdf（2.2. Transfer order info type） |
 | transferOrderFile | List    | N    | 调单订单文件。参见dictionary_biz.pdf（2.3. Transfer order file type） |
