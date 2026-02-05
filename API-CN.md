@@ -1,4 +1,4 @@
-<img width="795" height="655" alt="image" src="https://github.com/user-attachments/assets/b48a79b3-ca4b-45e9-bb5a-a653158a5a78" /><img width="850" height="380" alt="image" src="https://github.com/user-attachments/assets/cd5f6970-57db-4cec-90d3-ecc35734a5b4" />- [简介](#简介)
+- [简介](#简介)
 - [基本信息](#基本信息)
     - [名词解释](#名词解释)
     - [请求频率限制](#请求频率限制)
