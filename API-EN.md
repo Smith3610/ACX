@@ -28,6 +28,7 @@
         - [Virtual card opening application](#Virtual-card-opening-application)
         - [Virtual card opening progress query](#Virtual-card-opening-progress-query)
         - [Bank card activation](#Bank-card-activation)
+        - [Sensitive information](#Sensitive-information)
         - [Bank card recharge estimated amount query](#Bank-card-recharge-estimated-amount-query)
         - [Bank card recharge](#Bank-card-recharge)
         - [Bank card recharge order query](#Bank-card-recharge-order-query)
@@ -867,6 +868,57 @@ POST /card/merchant/activation
         "activePhoto": "https://waefdf23asdf.cloudfront.net/media/88888888/test.png"
     },
     "signature": "asfasdfjioasnfasdfasfiwaefasdfa"
+}
+```
+
+### Sensitive information
+**HTTP request**
+
+POST /api/card/v1/virtual/card
+
+**Request parameters:**
+
+| Parameter | Type | Required or not | Meaning |
+|----------|--------|----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| cardNo | String | Y | Bank card number |
+
+**Request example:**
+```json
+{
+    "requestId": "PYC20240325164529237",
+    "merchantId": "88888888",
+    "data":{
+        "cardNo": "12456782323"
+    },
+    "signature": "asfasdfjioasnfasdfasfiwaefasdfa"
+}
+```
+**Request response:**
+| Parameter | Type | Required or not | Meaning |
+|----------|--------|----------|:-----|
+| cvv | string | Y        |                                                                  |
+| card_number | string | Y        | Bank card number                                                               |
+| expire | string | Y        |            validity                                                   |
+| password | string | Y        |                                                                  |
+| accessUrl | string | Y        |        Information URL                                                          |
+
+**Response example:**
+```json
+{
+  "code": 0,
+  "message": "success",
+  "success": true,
+  "data":
+  {
+    "cvv": "null",
+    "card_number": "",
+    "expire": "null",
+    "password": "null",
+    "accessUrl": "https://embedded-sandbox.uqpaytech.com/iframe/card?token=pan_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiN2Q3ODllMzUtNWFhNi00N2E0LWIwMTgtOWY1NDJhMTI4ZGY5IiwiY2FyZF9pZCI6IjFlNjRkZjkyLWU3MDYtNDkwZS1hMjlmLTViZjNlMDIzZWRmZCIsImV4cCI6MTc3NDUwNzg0OCwiaWF0IjoxNzc0NTA3Nzg4fQ.nLx-nvSBiMyiucOtX7AYd3tw4cGtjyJ_QDwLuwQBcSU&cardId=1e64df92-e706-490e-a29f-5bf3e023edfd"
+  },
+  "requestId": "PYC20240325164529237",
+  "merchantId": "88888888",
+  "signature": "2sadfj23sanfinasdfnawesamdfasdfasdfwasfasdfa"
 }
 ```
 
