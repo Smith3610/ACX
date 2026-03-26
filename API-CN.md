@@ -28,6 +28,7 @@
         - [虚拟卡开卡申请](#虚拟卡开卡申请)
         - [虚拟卡开卡进度查询](#虚拟卡开卡进度查询)
         - [银行卡激活](#银行卡激活)
+        - [查询卡敏感信息](#查询卡敏感信息)
         - [银行卡充值预估到账金额查询](#银行卡充值预估到账金额查询)
         - [银行卡充值](#银行卡充值)
         - [银行卡充值订单查询](#银行卡充值订单查询)
@@ -910,6 +911,59 @@ POST /card/merchant/activation
 }
 ```
 
+### 查询卡敏感信息
+**HTTP请求**
+
+POST /api/card/v1/virtual/card
+
+**请求参数：**
+
+| 参数     | 类型   | 是否必传 | 含义                                                                                                                                                                                                             |
+|----------|--------|----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| cardNo | String | Y        | 银行卡号                                                                                                                                                                                                           |
+
+**请求示例：**
+```json
+{
+  "requestId": "PYC20240325164529237",
+  "merchantId": "88888888",
+  "data":
+  {
+    "cardNo": "12456782323"
+  },
+  "signature": "asfasdfjioasnfasdfasfiwaefasdfa"
+}
+```
+
+**请求响应：**
+| 参数     | 类型   | 是否必传 | 含义 |
+|----------|--------|----------|:-----|
+| cvv | string | Y        |                                                                  |
+| card_number | string | Y        | 卡号                                                               |
+| expire | string | Y        |   有效期                                                            |
+| password | string | Y        |                                                                  |
+| accessUrl | string | Y        |   敏感信息链接地址                                                               |
+
+
+**响应示例：**
+```json
+{
+  "code": 0,
+  "message": "success",
+  "success": true,
+  "data":
+  {
+    "cvv": "null",
+    "card_number": "",
+    "expire": "null",
+    "password": "null",
+    "accessUrl": "https://embedded-sandbox.uqpaytech.com/iframe/card?token=pan_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiN2Q3ODllMzUtNWFhNi00N2E0LWIwMTgtOWY1NDJhMTI4ZGY5IiwiY2FyZF9pZCI6IjFlNjRkZjkyLWU3MDYtNDkwZS1hMjlmLTViZjNlMDIzZWRmZCIsImV4cCI6MTc3NDUwNzg0OCwiaWF0IjoxNzc0NTA3Nzg4fQ.nLx-nvSBiMyiucOtX7AYd3tw4cGtjyJ_QDwLuwQBcSU&cardId=1e64df92-e706-490e-a29f-5bf3e023edfd"
+  },
+  "requestId": "PYC20240325164529237",
+  "merchantId": "88888888",
+  "signature": "2sadfj23sanfinasdfnawesamdfasdfasdfwasfasdfa"
+}
+```
 
 ### 银行卡充值预估到账金额查询
 此接口用于查询银行卡充值时查询预估到账金额
