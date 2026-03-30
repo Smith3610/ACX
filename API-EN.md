@@ -874,7 +874,7 @@ POST /card/merchant/activation
 ### Sensitive information
 **HTTP request**
 
-POST /api/card/v1/virtual/card
+POST /card/merchant/virtual
 
 **Request parameters:**
 
