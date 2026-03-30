@@ -930,7 +930,8 @@ POST /card/merchant/virtual
   "merchantId": "88888888",
   "data":
   {
-    "cardNo": "12456782323"
+    "cardNo": "12456782323",
+    "uniqueId": "23563",
   },
   "signature": "asfasdfjioasnfasdfasfiwaefasdfa"
 }
