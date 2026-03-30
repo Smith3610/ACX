@@ -881,6 +881,7 @@ POST /card/merchant/virtual
 | Parameter | Type | Required or not | Meaning |
 |----------|--------|----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | cardNo | String | Y | Bank card number |
+| uniqueId | String | Y | Unique ID of the partner user |
 
 **Request example:**
 ```json
@@ -888,7 +889,8 @@ POST /card/merchant/virtual
     "requestId": "PYC20240325164529237",
     "merchantId": "88888888",
     "data":{
-        "cardNo": "12456782323"
+        "cardNo": "12456782323",
+        "uniqueId": "345678",
     },
     "signature": "asfasdfjioasnfasdfasfiwaefasdfa"
 }
