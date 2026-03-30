@@ -914,7 +914,7 @@ POST /card/merchant/activation
 ### 查询卡敏感信息
 **HTTP请求**
 
-POST /api/card/v1/virtual/card
+POST /card/merchant/virtual
 
 **请求参数：**
 
