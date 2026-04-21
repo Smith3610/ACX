@@ -200,7 +200,7 @@ data={"targetCurrency":"SGD","currency":"EUR","targetCountry":"SG"}&merchantId=8
     * RSA的最大解密密文长度为128。
     * 请求数据中的字段signature由商户 RSA私钥签名生成。
     * 响应数据中的字段signature由 ACX RSA 私钥签名生成。
-    * 具体实现请参考ACX-demo.zip```com.ACX.demo.service.GlobalTransferTestService.class#main()方法```
+    * 具体实现请参考ACX-demo.zip```com.acx.demo.service.GlobalTransferTestService.class#main()方法```
 
 ### 验证签名
 signature：由ACX RSA 私钥签名生成
