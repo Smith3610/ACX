@@ -105,7 +105,7 @@ merchantId：商户ID。在商户后台系统-”商户基本信息” 菜单中
 | 参数       | 类型   | 是否必传 | 含义                       |
 |------------|:-------|:---------|----------------------------|
 | requestId  | String | Y        | 请求流水id。20位随机字符    |
-| merchantId | String | Y        | 商户ID。AXC为商户分配 |
+| merchantId | String | Y        | 商户ID。ACX为商户分配 |
 | data       | Object | Y        | 业务数据                   |
 | signature  | String | Y        | 签名                       |
 
@@ -126,7 +126,7 @@ merchantId：商户ID。在商户后台系统-”商户基本信息” 菜单中
 | success    | Boolean | Y        | 是否成功。true：成功；false：失败。<br />当code=0时为true |
 | data       | Object  | Y        | 响应体                                          |
 | requestId  | String  | Y        | 请求流水id。20位随机字符                         |
-| merchantId | String  | Y        | 商户ID。AXC为商户分配                      |
+| merchantId | String  | Y        | 商户ID。ACX为商户分配                      |
 | signature  | String  | Y        | 签名                                            |
 
 ```JSON
@@ -146,7 +146,7 @@ merchantId：商户ID。在商户后台系统-”商户基本信息” 菜单中
 |------------|:--------|:---------|----------------------------|
 | data       | Object  | Y        | 响应体                     |
 | requestId  | String  | Y        | 请求流水id。20位随机字符    |
-| merchantId | String  | Y        | 商户ID。AXC为商户分配 |
+| merchantId | String  | Y        | 商户ID。ACX为商户分配 |
 | signature  | String  | Y        | 签名                       |
 | notifyType | Integer | Y        | 通知类型                   |
 
@@ -164,12 +164,12 @@ merchantId：商户ID。在商户后台系统-”商户基本信息” 菜单中
 
 ## 接口认证及加解密
 ### 创建RSA公私钥
-合作方成为商户后需要登录商户后台系统。在 “商户基本信息” 菜单中生成RSA公钥、私钥，同时AXC也会提供AXC的公钥。请商户妥善保管公钥、私钥、AXC公钥。在之后的API请求中会用到所述参数。
+合作方成为商户后需要登录商户后台系统。在 “商户基本信息” 菜单中生成RSA公钥、私钥，同时ACX也会提供ACX的公钥。请商户妥善保管公钥、私钥、ACX公钥。在之后的API请求中会用到所述参数。
 
 ### 签名
 requestId：请求流水id。20位随机字符
 
-merchantId：AXC为商户分配。在商户后台系统 “商户基本信息” 菜单中可查看。
+merchantId：ACX为商户分配。在商户后台系统 “商户基本信息” 菜单中可查看。
 
 data：业务数据。
 
@@ -199,11 +199,11 @@ data={"targetCurrency":"SGD","currency":"EUR","targetCountry":"SG"}&merchantId=8
     * RSA 的最大加密明文长度为117。
     * RSA的最大解密密文长度为128。
     * 请求数据中的字段signature由商户 RSA私钥签名生成。
-    * 响应数据中的字段signature由 AXC RSA 私钥签名生成。
-    * 具体实现请参考AXC-demo.zip```com.AXC.demo.service.GlobalTransferTestService.class#main()方法```
+    * 响应数据中的字段signature由 ACX RSA 私钥签名生成。
+    * 具体实现请参考ACX-demo.zip```com.ACX.demo.service.GlobalTransferTestService.class#main()方法```
 
 ### 验证签名
-signature：由AXC RSA 私钥签名生成
+signature：由ACX RSA 私钥签名生成
 
 * 例如：查询汇率响应数据
 
@@ -223,7 +223,7 @@ signature：由AXC RSA 私钥签名生成
 }
 ```
 
-* 使用除签名字段（signature）外的所有非空字段内容组成，按照消息字段的ASCII码排序，并以“&”符号按照“字段名=字段值”的方式连接。通过AXC RSA公钥进行验签
+* 使用除签名字段（signature）外的所有非空字段内容组成，按照消息字段的ASCII码排序，并以“&”符号按照“字段名=字段值”的方式连接。通过ACX RSA公钥进行验签
 
 ## 响应码
 
@@ -231,7 +231,7 @@ signature：由AXC RSA 私钥签名生成
 |-------|-----------------------------------------------------------------|
 | 0     | 成功                                                            |
 | -1    | 具体业务错误。原因见message描述                                  |
-| 500   | 服务器出错。请联系AXC工作人员                              |
+| 500   | 服务器出错。请联系ACX工作人员                              |
 | 50001 | 请求参数缺失。requestId、merchantId、signature为空                 |
 | 50002 | 商户不存在                                                      |
 | 50003 | API功能不可用。例如关闭了全球速汇的功能，则全球速汇相关接口不可用 |
